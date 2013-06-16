@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rules xmlns="http://namespaces.plone.org/diazo"
+       xmlns:css="http://namespaces.plone.org/diazo/css"
+       xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
+       xmlns:xi="http://www.w3.org/2001/XInclude">
+    
+  <replace css:content=".portletHeader">
+      <h4><xsl:apply-templates select="./*|./text()"/></h4>
+  </replace>
+
+  <replace css:content=".portletCalendar .portletHeader">
+      <h4 class="row text-centered" style="text-align: center;">
+          <a style="float: left;"><xsl:copy-of select="./a[1]/@href"/> « </a>
+          <a style="float: right;"><xsl:copy-of select="./a[2]/@href"/> » </a>
+          <xsl:apply-templates select="./text()"/>
+      </h4>
+  </replace>
+
+  <replace css:content=".portletCalendar table">
+      <table class="width-100 hovered striped"><xsl:apply-templates select="./*"/></table>
+  </replace>
+
+  <replace css:content=".portlet">
+      <div class="inner">
+          <xsl:apply-templates select="dt"/>
+          <xsl:apply-templates select="dd/*"/>
+      </div>
+  </replace>
+  
+  <replace css:content=".portletCollection, .portletRss">
+      <div class="inner">
+          <xsl:apply-templates select="./dt"/>
+          <ul>
+              <xsl:for-each css:select=".portletItem">
+                  <li><xsl:apply-templates select="./*"/></li>
+              </xsl:for-each>
+          </ul>
+          <xsl:apply-templates css:select=".portletFooter > *"/>
+      </div>
+  </replace>
+
+  <replace css:content="div.portletStaticText">
+      <div class="inner">
+          <xsl:apply-templates select="./*"/>
+      </div>
+  </replace>
+
+  <drop css:content=".portletTopLeft, .portletTopRight, .portletBottomLeft, .portletBottomRight"/>
+
+</rules>
