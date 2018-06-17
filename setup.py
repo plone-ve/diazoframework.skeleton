@@ -6,7 +6,7 @@ version = '1.0'
 setup(name='diazoframework.skeleton',
       version=version,
       description="A Diazo framework implementation for the Skeleton CSS framework",
-      long_description=open("README.md").read() + "\n" +
+      long_description=open("README.rst").read() + "\n" +
                        open(os.path.join("docs", "HISTORY.txt")).read(),
       # Get more strings from
       # https://pypi.org/pypi?:action=list_classifiers
